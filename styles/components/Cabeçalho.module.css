@@ -1,0 +1,101 @@
+.logo {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+}
+
+.cadastrarBtn {
+  background: var(--color-secondary);
+  padding: 1rem 2rem;
+  color: var(--color-white);
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.buscar {
+  background: var(--color-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.25rem 1rem;
+}
+
+.sonsBuscar {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+}
+
+.sonsBuscar input {
+  height: 3rem;
+  padding-left: 0.5rem;
+  outline: none;
+  border: none;
+  width: 100%;
+  background: var(--color-white);
+  font-size: 1rem;
+  color: var(--color-text);
+  border-radius: 0.4rem;
+}
+
+@media (min-width: 460px) {
+  .sonsBuscar input + input {
+    margin-left: 1rem;
+  }
+}
+
+.sonsBuscar button {
+  background: var(--color-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin-left: 0.5rem;
+  width: 5rem;
+  height: 2.5rem;
+  margin-top: 0.2rem;
+  padding: 0.3rem;
+  cursor: pointer;
+}
+
+@media (max-width: 460px) {
+  .logo {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .logo img {
+    width: 80%;
+    height: 3rem;
+  }
+
+  .cadastrarBtn {
+    background: var(--color-secondary);
+    padding: 1rem 2rem;
+    color: var(--color-white);
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .sonsBuscar {
+    flex-wrap: wrap;
+    width: 90%;
+  }
+  .sonsBuscar input {
+    height: 2.5rem;
+    width: 100%;
+    text-align: center;
+  }
+  .sonsBuscar input + input {
+    margin-top: 1rem;
+  }
+  .sonsBuscar button {
+    width: 3.5rem;
+    height: 3rem;
+    margin-top: 1rem;
+    padding: 0.9rem;
+  }
+}

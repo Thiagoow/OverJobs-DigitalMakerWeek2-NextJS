@@ -1,7 +1,8 @@
-import '../styles/globals.css'
+//Aqui fica a estilização global do nosso app 😁:
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return <Component {...pageProps} />;
 }
 
-export default MyApp
+export default MyApp;

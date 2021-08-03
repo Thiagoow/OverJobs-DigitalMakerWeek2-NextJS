@@ -1,5 +1,4 @@
 import React from "react";
-
 import Head from "next/head";
 import styles from "../styles/pages/Home.module.css";
 //Importação dos nossos componentes criados manualmente:

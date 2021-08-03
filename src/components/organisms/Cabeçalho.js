@@ -5,7 +5,7 @@ import styles from "../../../styles/components/Cabeçalho.module.css";
 
 function Cabeçalho() {
   return (
-    <div>
+    <div className={styles.cabeçalho}>
       {/* Div superior: */}
       <div className={styles.logo}>
         <Link href="/" passHref>

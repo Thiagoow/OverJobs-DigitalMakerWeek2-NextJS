@@ -1,3 +1,8 @@
+.cabeçalho {
+  display: grid;
+  grid-area: cabeçalho;
+}
+
 .logo {
   display: flex;
   justify-content: space-between;

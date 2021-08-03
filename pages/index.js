@@ -18,8 +18,11 @@ export default function Home() {
       {/* Componentes inseridos abaixo = Criados manualmente
       para esse projeto: */}
       <Cabeçalho />
-      <Filtros />
-      <Cards />
+
+      <div className={styles.cardContainer}>
+        <Filtros />
+        <Cards />
+      </div>
     </div>
   );
 }

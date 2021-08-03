@@ -1,0 +1,12 @@
+.estrutura {
+  display: grid;
+  grid-template-areas:
+    "cabeçalho"
+    "cardContainer";
+}
+
+.cardContainer {
+  display: flex;
+  grid-area: cardContainer;
+  padding: 10px 30px;
+}

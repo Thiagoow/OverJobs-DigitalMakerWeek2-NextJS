@@ -8,9 +8,9 @@ import Cards from "../src/components/organisms/Cards";
 
 export default function Home({ jobs }) {
   const [vagas, setVagas] = React.useState(jobs);
-  console.log(jobs);
+  //console.log(jobs);
 
-  const [filtro, setFiltro] = React.useState({
+  const [filtros, setFiltros] = React.useState({
     Tipo: [],
     Categoria: [],
     Modalidade: [],
@@ -21,6 +21,8 @@ export default function Home({ jobs }) {
 
   const [filtroActive, setFiltroActive] = React.useState({});
 
+  const toggleFiltro = (key, checked, value) => {};
+
   return (
     /* No Next/React, usamos as propriedades CSS 
     HTML, e Javascript em camelCase: */
@@ -29,13 +31,26 @@ export default function Home({ jobs }) {
       <Head>
         <title>OverJobs</title>
       </Head>
-
       {/* Componentes inseridos abaixo = Criados manualmente
       para esse projeto: */}
       <Cabeçalho />
 
       <div className={styles.cardContainer}>
-        <Filtros />
+        <div className={styles.filtro}>
+          <h4>Filtrar por:</h4>
+
+          <div className={styles.filtro_list}>
+            {Object.keys(filtros).map((key, index) => (
+              <Filtros
+                key={index}
+                filtros={filtros[key]}
+                onChange={toggleFiltro}
+                categoria={key}
+              />
+            ))}
+          </div>
+        </div>
+
         <Cards />
       </div>
     </div>

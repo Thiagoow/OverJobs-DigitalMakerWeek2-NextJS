@@ -10,3 +10,16 @@
   grid-area: cardContainer;
   padding: 10px 30px;
 }
+
+.filtro {
+  width: 20%;
+  /* 2 pra cima, 0 pros lados, e 0 pra baixo: */
+  margin: 2rem 0 0;
+  margin-right: 1rem;
+  padding-bottom: 1rem;
+  background-color: var(--color-dark-blue);
+  border: 1px solid var(--color-primary);
+  border-radius: 0.5rem;
+  max-height: 50rem;
+  padding: 1rem;
+}

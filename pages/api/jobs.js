@@ -1,7 +1,6 @@
 /* Não estou utilizando esse arquivo, pois a API
 a qual estamos consultando é ONLINE, e não LOCAL.
-
-Link da API Online = https://api-overjobs-thiagosilvalopes.herokuapp.com/jobs
+  Link da API Online = https://api-overjobs-thiagosilvalopes.herokuapp.com/jobs
 */
 
 /* Se quiser usar uma API local:
@@ -30,4 +29,21 @@ export default function handler(req, res) {
       message: "Essa API não suporta outro método/requisição além do 'GET' 😕"
     });
   }
+
+  /* Se eu quiser criar uma proteção a mais para essa 
+  API local, basta apenas envolver todo o código ACIMA 
+  dentro desse if ABAIXO: 
+
+  if (req.query.password === "códigoSecreto") {
+    //Sendo assim para acessar essa API, devemos usar a URL:
+    //http://localhost:3000/api/jobs?password=códigoSecreto
+    //ABAIXO, TODO O CÓDIGO DA API NORMAL (Limite = 3º else):
+
+  } else {
+    res.status(400).json({
+      error: true,
+      message: "Acesso não autorizado‼😑 - Falta a senha dessa API na URL para requisição! 🙅‍♂️"
+    });
+  }
+  */
 }

@@ -40,7 +40,10 @@ export default function Home({ jobs }) {
           <h4>Filtrar por:</h4>
 
           <div className={styles.filtro_list}>
+            {/* Pra cada item da array filtros, a partir do index:: */}
             {Object.keys(filtros).map((key, index) => (
+              /* Retorna um componente filter,
+               com o id único 'key':*/
               <Filtros
                 key={index}
                 filtros={filtros[key]}

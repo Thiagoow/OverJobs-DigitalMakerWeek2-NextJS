@@ -17,14 +17,26 @@
   line-height: 3rem;
 }
 
-.card h3 {
+.card b {
   font-size: 1.4rem;
   font-weight: 400;
   color: var(--color-primary);
   line-height: 2rem;
 }
+.card .h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: black;
+  line-height: 2rem;
+}
 
 .card p {
+  font-size: 1rem;
+  color: var(--color-text);
+  padding-right: 2rem;
+  line-height: 2rem;
+}
+.card .p {
   font-size: 1rem;
   color: var(--color-text);
   padding-right: 2rem;
@@ -35,9 +47,15 @@
   width: 100%;
 }
 
-.content h3,
-.content h4 {
-  line-height: 2rem;
+.toggleButton {
+  background: var(--color-secondary);
+  padding: 0.5rem 1rem;
+  color: var(--color-white);
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 0.5rem;
 }
 
 .details {
@@ -48,16 +66,20 @@
   align-items: flex-start;
   border-left: 1px solid var(--color-primary);
 }
-@media (min-width: 1150px) {
+
+@media (min-width: 1120px) {
   .mobileDetails {
     display: none;
   }
 }
-@media (max-width: 1150px) {
+@media (max-width: 1120px) {
   .details {
     display: none;
   }
   .mobileDetails {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
     padding: 0 2rem;
     display: flex;
     justify-content: center;

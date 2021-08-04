@@ -1,23 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
+
 //Arquivo de estilização desse componente:
 import styles from "../../../styles/components/Cabeçalho.module.css";
+import Logo from "../atoms/Logo";
 
 function Cabeçalho() {
   return (
     <div className={styles.cabeçalho}>
       {/* Div superior: */}
       <div className={styles.logo}>
-        <Link href="/" passHref>
-          <a>
-            <Image
-              src="/images/logo.svg"
-              width="200"
-              height="60"
-              alt="Logo do OverJobs"
-            />
-          </a>
-        </Link>
+        <Logo />
 
         <Link href="/" passHref>
           <a>

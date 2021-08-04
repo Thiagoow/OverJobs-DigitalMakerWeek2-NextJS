@@ -5,6 +5,8 @@ function Filtros({ categoria, filtros, onChange }) {
     <div className={styles.filtros}>
       <h5 className={styles.title}>{categoria}</h5>
       <ul className={styles.filtros_list}>
+        {/* Se existirem os filtros, retorna cada um deles
+        dentro de uma li, com o ID único e atributos: */}
         {filtros &&
           filtros.map((item) => {
             //Criando um ID único a partir da categoria:

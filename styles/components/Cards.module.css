@@ -12,7 +12,7 @@
 }
 
 .card h2 {
-  font-size: 0.6rem;
+  font-size: 1.6rem;
   color: var(--color-secondary);
   line-height: 3rem;
 }
@@ -31,8 +31,12 @@
   line-height: 2rem;
 }
 
-.content h2,
-.content h3 {
+.content {
+  width: 100%;
+}
+
+.content h3,
+.content h4 {
   line-height: 2rem;
 }
 
@@ -43,4 +47,22 @@
   flex-direction: column;
   align-items: flex-start;
   border-left: 1px solid var(--color-primary);
+}
+@media (min-width: 1150px) {
+  .mobileDetails {
+    display: none;
+  }
+}
+@media (max-width: 1150px) {
+  .details {
+    display: none;
+  }
+  .mobileDetails {
+    padding: 0 2rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+    border-left: 1px solid var(--color-primary);
+  }
 }

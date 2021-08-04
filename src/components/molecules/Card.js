@@ -1,12 +1,18 @@
 import styles from "../../../styles/components/Cards.module.css";
 
-function Cards({ title, enterpriseName, description, day, local }) {
+function Card({ title, enterpriseName, description, day, local }) {
   return (
     <div className={styles.card}>
       <div className={styles.content}>
         <h2>{title}</h2>
-        <h2>{enterpriseName}</h2>
+        <h3>{enterpriseName}</h3>
         <p>{description}</p>
+
+        <div className={styles.mobileDetails}>
+          <h4>Publicado em:</h4>
+          <p>{day}</p>
+          <p>{local}</p>
+        </div>
       </div>
 
       <div className={styles.details}>
@@ -18,4 +24,4 @@ function Cards({ title, enterpriseName, description, day, local }) {
   );
 }
 
-export default Cards;
+export default Card;

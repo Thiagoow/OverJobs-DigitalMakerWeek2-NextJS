@@ -1,6 +1,6 @@
 import styles from "../../../styles/components/Filtros.module.css";
 
-function Filtros({ categoria, filtros, onChange }) {
+function Filtros({ id, categoria, filtros, onChange }) {
   return (
     <div className={styles.filtros}>
       <h5 className={styles.title}>{categoria}</h5>
@@ -9,11 +9,6 @@ function Filtros({ categoria, filtros, onChange }) {
         dentro de uma li, com o ID único e atributos: */}
         {filtros &&
           filtros.map((item) => {
-            //Criando um ID único a partir da categoria:
-            const id = `${categoria.toLowerCase()}-${filtros
-              .toString()
-              .replace(" ", "")}`;
-
             return (
               <li key={id}>
                 <input

@@ -9,6 +9,18 @@ import Card from "../src/components/molecules/Card";
 
 export default function Home({ jobs }) {
   //console.log(jobs);
+
+  let [id, setId] = React.useState();
+  React.useEffect(() => {
+    //Pra cada vaga na array de jobs (vinda da API por SSR):
+    jobs.forEach((job) => {
+      /* Verifica os atributos de cada uma das vagas,
+      e se elas existirem, adiciona como opção de filtro,
+      junto com o estadoAnterior/previousState: */
+      setId(job.id);
+    });
+  }, [jobs]);
+
   const [vagas, setVagas] = React.useState(jobs);
 
   const [filtros, setFiltros] = React.useState({
@@ -22,7 +34,13 @@ export default function Home({ jobs }) {
 
   const [filtroActive, setFiltroActive] = React.useState({});
 
-  const toggleFiltro = (key, checked, value) => {};
+  const toggleFiltro = (key, checked, value) => {
+    console.log({
+      key,
+      checked,
+      value
+    });
+  };
 
   /* Renderiza a função utilizando como parâmetro
   a array de jobs (definida lá embaixo da função): */
@@ -34,14 +52,30 @@ export default function Home({ jobs }) {
       junto com o estadoAnterior/previousState: */
       setFiltros((prevState) => {
         let objeto = prevState;
-        /* Se existir um atributo estado na vaga
+        /* Se existir um atributo categoria na vaga
         ou seja, maior que zero: */
-        if (prevState.Estado.indexOf(job.state) < 0) {
-          /* Adiciona esse estado como uma
+        if (prevState.Categoria.indexOf(job.category) < 0) {
+          /* Adiciona essa categoria como uma
           opção de filtragem 😉, junto com todos
           as outras opções já existentes (utilizando o
           o operador rest -> "...var"):  */
+          objeto.Categoria = [...objeto.Categoria, job.category];
+        }
+        //Faz o mesmo processo pros outros tipos de filtragem:
+        if (prevState.Tipo.indexOf(job.type) < 0) {
+          objeto.Tipo = [...objeto.Tipo, job.type];
+        }
+        if (prevState.Nível.indexOf(job.level) < 0) {
+          objeto.Nível = [...objeto.Nível, job.level];
+        }
+        if (prevState.Modalidade.indexOf(job.model) < 0) {
+          objeto.Modalidade = [...objeto.Modalidade, job.model];
+        }
+        if (prevState.Estado.indexOf(job.state) < 0) {
           objeto.Estado = [...objeto.Estado, job.state];
+        }
+        if (prevState.Cidade.indexOf(job.city) < 0) {
+          objeto.Cidade = [...objeto.Cidade, job.city];
         }
 
         return { ...objeto };

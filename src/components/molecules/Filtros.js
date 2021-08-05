@@ -1,6 +1,7 @@
 import styles from "../../../styles/components/Filtros.module.css";
+import { uniqueId } from "lodash";
 
-function Filtros({ id, categoria, filtros, onChange }) {
+function Filtros({ categoria, filtros, onChange }) {
   return (
     <div className={styles.filtros}>
       <h5 className={styles.title}>{categoria}</h5>
@@ -9,6 +10,9 @@ function Filtros({ id, categoria, filtros, onChange }) {
         dentro de uma li, com o ID único e atributos: */}
         {filtros &&
           filtros.map((item) => {
+            //Id único criado com o lodash:
+            const id = uniqueId();
+
             return (
               <li key={id}>
                 <input

@@ -10,17 +10,6 @@ import Card from "../src/components/molecules/Card";
 export default function Home({ jobs }) {
   //console.log(jobs);
 
-  let [id, setId] = React.useState();
-  React.useEffect(() => {
-    //Pra cada vaga na array de jobs (vinda da API por SSR):
-    jobs.forEach((job) => {
-      /* Verifica os atributos de cada uma das vagas,
-      e se elas existirem, adiciona como opção de filtro,
-      junto com o estadoAnterior/previousState: */
-      setId(job.id);
-    });
-  }, [jobs]);
-
   const [vagas, setVagas] = React.useState(jobs);
 
   const [filtros, setFiltros] = React.useState({

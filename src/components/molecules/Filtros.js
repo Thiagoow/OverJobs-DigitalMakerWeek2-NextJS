@@ -21,7 +21,13 @@ function Filtros({ categoria, filtros, onChange }) {
                   onChange={(e) => onChange(categoria, e.target.checked, item)}
                   id={id}
                 />
+
                 <label htmlFor={id}>{item}</label>
+                {/* O "onChange" faz com que todas
+                as vezes que clicarmos no formulário,
+                ele defina a key/categoria da qual pertence
+                o input de tipo "checkbox", + se ele clicado/checked
+                + o valor dele, ou seja nome/item dele, na div acima*/}
               </li>
             );
           })}

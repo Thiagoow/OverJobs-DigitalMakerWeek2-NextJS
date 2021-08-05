@@ -23,16 +23,42 @@ export default function Home({ jobs }) {
 
   const [filtroActive, setFiltroActive] = React.useState({});
 
-  const toggleFiltro = (key, checked, value) => {
-    console.log({
-      key,
-      checked,
-      value
-    });
+  /* Função que a realiza a filtragem de cada um dos 
+  campos selecionados/clicados pelo usuário na DOM: */
+  const whenClickToggleFiltro = (key, checked, value) => {
+    /* Vendo oq ele retorna no console:
+    console.log({ key, checked, value});*/
+
+    let field;
+    switch (key) {
+      // Caso o filtro clicado tenha como key:
+      case "Categoria":
+        field = "category";
+        break;
+      case "Tipo":
+        field = "type";
+        break;
+      case "Nível":
+        field = "level";
+        break;
+      case "Modalidade":
+        field = "model";
+        break;
+      case "Estado":
+        field = "state";
+        break;
+      case "Cidade":
+        field = "city";
+        break;
+    }
+    setFiltroActive((prevState) => ({
+      ...prevState,
+      [value]: { field: checked }
+    }));
   };
 
-  /* Renderiza a função utilizando como parâmetro
-  a array de jobs (definida lá embaixo da função): */
+  /* Executa a função para trazer pra div de filtros,
+  cada um dos itens de filtros presentes na API: */
   React.useEffect(() => {
     //Pra cada vaga na array de jobs (vinda da API por SSR):
     jobs.forEach((job) => {
@@ -72,6 +98,34 @@ export default function Home({ jobs }) {
     });
   }, [jobs]);
 
+  /* Toda vez que o filtrosAtivos forem modificados pelo
+  'setFiltroActive', atualiza eles na DOM: */
+  React.useEffect(() => {
+    let vagasFiltradas = [];
+    Object.keys(filtroActive).map((key) => {
+      let nenhumFiltroSelecionado = true;
+
+      /* Se o index do filtro ativo estiver checado: */
+      if (filtroActive[key].checked) {
+        //Existem filtros checados
+        nenhumFiltroSelecionado = false;
+
+        /* Passa pras vagas filtradas apenas as vagas
+        que se adequarem ao filtros clicados/checados: */
+        vagasFiltradas = [
+          ...jobs,
+          ...jobs.filter((item) => item[filtroActive[key].field == key])
+        ];
+      }
+
+      if (nenhumFiltroSelecionado) {
+        setVagas(jobs);
+      } else {
+        setVagas(vagasFiltradas);
+      }
+    });
+  }, [filtroActive, jobs]);
+
   return (
     /* No Next/React, usamos as propriedades CSS 
     HTML, e Javascript em camelCase: */
@@ -96,7 +150,7 @@ export default function Home({ jobs }) {
               <Filtros
                 key={index}
                 filtros={filtros[key]}
-                onChange={toggleFiltro}
+                onChange={whenClickToggleFiltro}
                 categoria={key}
               />
             ))}

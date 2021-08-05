@@ -15,16 +15,14 @@ function Filtros({ categoria, filtros, onChange }) {
               .replace(" ", "")}`;
 
             return (
-              <li key={item}>
+              <li key={id}>
                 <input
                   type="checkbox"
                   name={categoria.toLowerCase()}
-                  onChange={(event) =>
-                    onChange(categoria, event.target.checked, filtros)
-                  }
+                  onChange={(e) => onChange(categoria, e.target.checked, item)}
                   id={id}
                 />
-                <label htmlFor={id}>{filtros}</label>
+                <label htmlFor={id}>{item}</label>
               </li>
             );
           })}

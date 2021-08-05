@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+//Estilização desse componente:
 import styles from "../styles/pages/Home.module.css";
 //Importação dos nossos componentes criados manualmente:
 import Cabeçalho from "../src/components/organisms/Cabeçalho";
@@ -7,14 +8,14 @@ import Filtros from "../src/components/molecules/Filtros";
 import Card from "../src/components/molecules/Card";
 
 export default function Home({ jobs }) {
-  const [vagas, setVagas] = React.useState(jobs);
   //console.log(jobs);
+  const [vagas, setVagas] = React.useState(jobs);
 
   const [filtros, setFiltros] = React.useState({
-    Tipo: [],
     Categoria: [],
-    Modalidade: [],
+    Tipo: [],
     Nível: [],
+    Modalidade: [],
     Estado: [],
     Cidade: []
   });
@@ -22,6 +23,31 @@ export default function Home({ jobs }) {
   const [filtroActive, setFiltroActive] = React.useState({});
 
   const toggleFiltro = (key, checked, value) => {};
+
+  /* Renderiza a função utilizando como parâmetro
+  a array de jobs (definida lá embaixo da função): */
+  React.useEffect(() => {
+    //Pra cada vaga na array de jobs (vinda da API por SSR):
+    jobs.forEach((job) => {
+      /* Verifica os atributos de cada uma das vagas,
+      e se elas existirem, adiciona como opção de filtro,
+      junto com o estadoAnterior/previousState: */
+      setFiltros((prevState) => {
+        let objeto = prevState;
+        /* Se existir um atributo estado na vaga
+        ou seja, maior que zero: */
+        if (prevState.Estado.indexOf(job.state) < 0) {
+          /* Adiciona esse estado como uma
+          opção de filtragem 😉, junto com todos
+          as outras opções já existentes (utilizando o
+          o operador rest -> "...var"):  */
+          objeto.Estado = [...objeto.Estado, job.state];
+        }
+
+        return { ...objeto };
+      });
+    });
+  }, [jobs]);
 
   return (
     /* No Next/React, usamos as propriedades CSS 

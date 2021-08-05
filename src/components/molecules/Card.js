@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../../../styles/components/Card.module.css";
 
-function Card({ title, enterpriseName, description, day, local }) {
+function Card({ title, enterpriseName, description, day, local, model }) {
   //Var pra mostrar mais ou menos da descrição:
   const [lendoMais, setLendoMais] = React.useState(true);
   const [lerMais, setLerMais] = React.useState(false);
@@ -42,6 +42,10 @@ function Card({ title, enterpriseName, description, day, local }) {
 
         <div className={styles.mobileDetails}>
           <p className={styles.h4}>
+            Modalidade: {""}
+            <b className={styles.p}>{model}</b>
+          </p>
+          <p className={styles.h4}>
             Publicado em: {""}
             <b className={styles.p}>
               {day}, {local}
@@ -51,6 +55,10 @@ function Card({ title, enterpriseName, description, day, local }) {
       </div>
 
       <div className={styles.details}>
+        <p className={styles.h4}>
+          Modalidade: {""}
+          <b className={styles.p}>{model}</b>
+        </p>
         <p className={styles.h4}>
           Publicado em: {""}
           <b className={styles.p}>

@@ -169,6 +169,7 @@ export default function Home({ jobs }) {
                 description={key.description}
                 day={key.day}
                 local={`${key.city} - ${key.state}`}
+                model={key.model}
               />
             ))}
         </div>

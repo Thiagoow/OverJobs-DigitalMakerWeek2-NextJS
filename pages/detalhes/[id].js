@@ -18,6 +18,8 @@ export default function detalhesVaga({ vaga }) {
             day={vaga.day}
             local={`${vaga.city} - ${vaga.state}`}
             model={vaga.model}
+            category={vaga.category}
+            type={vaga.type}
           />
         )}
       </div>

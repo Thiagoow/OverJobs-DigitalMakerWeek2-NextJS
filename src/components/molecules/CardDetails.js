@@ -7,7 +7,9 @@ function CardDetails({
   description,
   day,
   local,
-  model
+  model,
+  category,
+  type
 }) {
   //Var pra mostrar mais ou menos da descrição:
   const [lendoMais, setLendoMais] = React.useState(true);
@@ -28,8 +30,10 @@ function CardDetails({
     <div className={styles.card}>
       <div className={styles.content}>
         <h2>
-          {title} <b> {enterpriseName}</b>
+          {title} {category}
         </h2>
+        <b> {enterpriseName}</b>
+
         {lerMais && <p>{description}</p>}
 
         {lendoMais && (
@@ -49,6 +53,10 @@ function CardDetails({
 
         <div className={styles.mobileDetails}>
           <p className={styles.h4}>
+            Tipo: {""}
+            <b className={styles.p}>{type}</b>
+          </p>
+          <p className={styles.h4}>
             Modalidade: {""}
             <b className={styles.p}>{model}</b>
           </p>
@@ -62,6 +70,10 @@ function CardDetails({
       </div>
 
       <div className={styles.details}>
+        <p className={styles.h4}>
+          Tipo: {""}
+          <b className={styles.p}>{type}</b>
+        </p>
         <p className={styles.h4}>
           Modalidade: {""}
           <b className={styles.p}>{model}</b>

@@ -200,6 +200,8 @@ export default function Home({ jobs }) {
                     day={key.day}
                     local={`${key.city} - ${key.state}`}
                     model={key.model}
+                    category={key.category}
+                    type={key.type}
                   />
                 </a>
               </Link>

@@ -1,7 +1,16 @@
 import React from "react";
 import styles from "../../../styles/components/Card.module.css";
 
-function Card({ title, enterpriseName, description, day, local, model }) {
+function Card({
+  title,
+  enterpriseName,
+  description,
+  day,
+  local,
+  model,
+  category,
+  type
+}) {
   //Var pra mostrar mais ou menos da descrição:
   const [lendoMais, setLendoMais] = React.useState(true);
   const [lerMais, setLerMais] = React.useState(false);
@@ -21,8 +30,9 @@ function Card({ title, enterpriseName, description, day, local, model }) {
     <div className={styles.card}>
       <div className={styles.content}>
         <h2>
-          {title} <b> {enterpriseName}</b>
+          {title} {category}
         </h2>
+        <b> {enterpriseName}</b>
         {lerMais && <p>{description}</p>}
 
         {lendoMais && (
@@ -42,6 +52,10 @@ function Card({ title, enterpriseName, description, day, local, model }) {
 
         <div className={styles.mobileDetails}>
           <p className={styles.h4}>
+            Tipo: {""}
+            <b className={styles.p}>{type}</b>
+          </p>
+          <p className={styles.h4}>
             Modalidade: {""}
             <b className={styles.p}>{model}</b>
           </p>
@@ -55,6 +69,10 @@ function Card({ title, enterpriseName, description, day, local, model }) {
       </div>
 
       <div className={styles.details}>
+        <p className={styles.h4}>
+          Tipo: {""}
+          <b className={styles.p}>{type}</b>
+        </p>
         <p className={styles.h4}>
           Modalidade: {""}
           <b className={styles.p}>{model}</b>

@@ -11,21 +11,6 @@ function Card({
   category,
   type
 }) {
-  //Var pra mostrar mais ou menos da descrição:
-  const [lendoMais, setLendoMais] = React.useState(true);
-  const [lerMais, setLerMais] = React.useState(false);
-
-  /* Função que dá o toggle 
-  pra mostrar mais ou não: */
-  function toggleLerMais() {
-    if (description.length > 240 && lendoMais) {
-      setLerMais(!lerMais);
-    }
-    if (description.length <= 240) {
-      setLerMais(!lerMais);
-    }
-  }
-
   return (
     <div className={styles.card}>
       <div className={styles.content}>
@@ -33,22 +18,7 @@ function Card({
           {title} {category}
         </h2>
         <b> {enterpriseName}</b>
-        {lerMais && <p>{description}</p>}
-
-        {lendoMais && (
-          <>
-            <p>
-              {description.slice(0, 240)}
-
-              <button
-                className={styles.toggleButton}
-                onClick={(e) => toggleLerMais(e)}
-              >
-                {lerMais ? "Ler menos" : "Ler mais"}
-              </button>
-            </p>
-          </>
-        )}
+        <p>{description.slice(0, 80)}...</p>
 
         <div className={styles.mobileDetails}>
           <p className={styles.h4}>

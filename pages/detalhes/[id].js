@@ -41,7 +41,9 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params: { id } }) {
   /* Retorna API a var que possui o ID definido acima  */
-  const { data } = await axios.get(`http://localhost:3000/api/jobs?id=${id}`);
+  const { data } = await axios.get(
+    `https://overjobs.netlify.app/api/jobs?id=${id}`
+  );
 
   return {
     props: {

@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Link from "next/link";
 //Estilização desse componente:
 import styles from "../styles/pages/Home.module.css";
 //Importação dos nossos componentes criados manualmente:
@@ -22,6 +23,34 @@ export default function Home({ jobs }) {
   });
 
   const [filtroActive, setFiltroActive] = React.useState({});
+
+  /* Quando o usuário clicar pra pesquisar uma
+  vaga (parte superior do site): */
+  const pesquisaVagas = async (buscaVaga, buscaCidade) => {
+    //console.log({ buscaVaga, buscaCidade });
+
+    if (!buscaVaga && buscaCidade) {
+      /* Se nn existe nada digitado nos campos
+      de pesquisa, não muda nada. (vagas continuam
+      recebendo tudo que vem da API) */
+      setVagas(jobs);
+    }
+    /* Se um dos campos existir a pesquisa: */
+    if (buscaVaga) {
+      setVagas(
+        jobs.filter((item) =>
+          item.title.toUpperCase().includes(buscaVaga.toUpperCase())
+        )
+      );
+    }
+    if (buscaCidade) {
+      setVagas(
+        jobs.filter((item) =>
+          item.city.toUpperCase().includes(buscaCidade.toUpperCase())
+        )
+      );
+    }
+  };
 
   /* Função que a realiza a filtragem de cada um dos 
   campos selecionados/clicados pelo usuário na DOM: */
@@ -136,7 +165,7 @@ export default function Home({ jobs }) {
       </Head>
       {/* Componentes inseridos abaixo = Criados manualmente
       para esse projeto: */}
-      <Cabeçalho />
+      <Cabeçalho filtrarVagas={pesquisaVagas} />
 
       <div className={styles.cardContainer}>
         <div className={styles.filtro}>
@@ -162,15 +191,18 @@ export default function Home({ jobs }) {
         dentro de um componente Card, com a key e atributos: */}
           {vagas &&
             vagas.map((key, index) => (
-              <Card
-                key={index}
-                title={key.title}
-                enterpriseName={key.enterprise}
-                description={key.description}
-                day={key.day}
-                local={`${key.city} - ${key.state}`}
-                model={key.model}
-              />
+              <Link key={index} href={`/detalhes/${key.id}`} passRef>
+                <a>
+                  <Card
+                    title={key.title}
+                    enterpriseName={key.enterprise}
+                    description={key.description}
+                    day={key.day}
+                    local={`${key.city} - ${key.state}`}
+                    model={key.model}
+                  />
+                </a>
+              </Link>
             ))}
         </div>
       </div>
@@ -189,6 +221,9 @@ export async function getStaticProps() {
   return {
     props: {
       jobs: data
-    }
+    },
+    /* Atualiza as informações do site com as da API
+    a cada 1seg: */
+    revalidate: 1000
   };
 }

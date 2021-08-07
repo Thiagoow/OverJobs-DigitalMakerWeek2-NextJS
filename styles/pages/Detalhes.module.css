@@ -1,0 +1,22 @@
+.card {
+  /* X pra cima, Y pros lados, e Z pra baixo: */
+  padding: 10px 35px 4rem;
+}
+
+/*  
+@media (max-width: 940px) {
+  .filtro {
+    width: 60%;
+  }
+}
+@media (min-width: 640px) {
+  .filtro {
+    width: 40%;
+  }
+}
+@media (min-width: 940px) {
+  .filtro {
+    width: 20%;
+  }
+}
+*/

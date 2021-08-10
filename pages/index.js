@@ -11,8 +11,6 @@ import Card from "../src/components/molecules/Card";
 export default function Home({ jobs }) {
   //console.log(jobs);
 
-  const [vagas, setVagas] = React.useState(jobs);
-
   const [filtros, setFiltros] = React.useState({
     Categoria: [],
     Tipo: [],
@@ -22,7 +20,9 @@ export default function Home({ jobs }) {
     Cidade: []
   });
 
-  const [filtroActive, setFiltroActive] = React.useState({});
+  const [vagas, setVagas] = React.useState(jobs);
+
+  const [activeFiltro, setActiveFiltro] = React.useState({});
 
   /* Quando o usuário clicar pra pesquisar uma
   vaga (parte superior do site): */
@@ -55,10 +55,11 @@ export default function Home({ jobs }) {
   /* Função que a realiza a filtragem de cada um dos 
   campos selecionados/clicados pelo usuário na DOM: */
   const whenClickToggleFiltro = (key, checked, value) => {
-    /* Vendo oq ele retorna no console:
-    console.log({ key, checked, value});*/
+    /* Vendo oq ele retorna no console:*/
+    console.log({ key, checked, value });
 
     let field;
+
     switch (key) {
       // Caso o filtro clicado tenha como key:
       case "Categoria":
@@ -79,11 +80,15 @@ export default function Home({ jobs }) {
       case "Cidade":
         field = "city";
         break;
+      default:
+        break;
     }
-    setFiltroActive((prevState) => ({
+    setActiveFiltro((prevState) => ({
       ...prevState,
       [value]: { field: checked }
     }));
+
+    //console.log(field);
   };
 
   /* Executa a função para trazer pra div de filtros,
@@ -128,14 +133,14 @@ export default function Home({ jobs }) {
   }, [jobs]);
 
   /* Toda vez que o filtrosAtivos forem modificados pelo
-  'setFiltroActive', atualiza eles na DOM: */
+  'setActiveFiltro', atualiza eles na DOM: */
   React.useEffect(() => {
     let vagasFiltradas = [];
-    Object.keys(filtroActive).map((key) => {
+    Object.keys(activeFiltro).map((key) => {
       let nenhumFiltroSelecionado = true;
 
       /* Se o index do filtro ativo estiver checado: */
-      if (filtroActive[key].checked) {
+      if (activeFiltro[key].checked) {
         //Existem filtros checados
         nenhumFiltroSelecionado = false;
 
@@ -143,7 +148,7 @@ export default function Home({ jobs }) {
         que se adequarem ao filtros clicados/checados: */
         vagasFiltradas = [
           ...jobs,
-          ...jobs.filter((item) => item[filtroActive[key].field == key])
+          ...jobs.filter((item) => item[activeFiltro[key].field == key])
         ];
       }
 
@@ -153,7 +158,7 @@ export default function Home({ jobs }) {
         setVagas(vagasFiltradas);
       }
     });
-  }, [filtroActive, jobs]);
+  }, [activeFiltro, jobs]);
 
   return (
     /* No Next/React, usamos as propriedades CSS 
